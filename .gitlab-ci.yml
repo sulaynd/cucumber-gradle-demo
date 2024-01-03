@@ -15,7 +15,6 @@ test:
     - gradle clean test
     - gradle reports
 
-
   # Store artifacts
   artifacts:
     when: always
