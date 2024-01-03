@@ -1,0 +1,25 @@
+image : gradle:7.1.0-jdk11
+stages:
+  - test
+
+variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+
+test:
+  stage: test
+  allow_failure: true
+
+  # Run the tests
+  script:
+    - echo "Executing BDD scenarios with Gradle"
+    - gradle clean test
+    - gradle reports
+
+
+  # Store artifacts
+  artifacts:
+    when: always
+    name: "Gradle Report"
+    paths:
+      - lib/target/site/serenity/*
+    expire_in: 24 h
